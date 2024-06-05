@@ -34,7 +34,7 @@ export default function Navbar() {
                 </div>
             </section>
 
-            <section className="p-4 border-b flex justify-start gap-3 items-center w-full">
+            <section className="p-8 border-b flex justify-start gap-3 items-center w-full overflow-x-scroll md:overflow-x-auto">
                 <p>Filters</p>
                 <Select>
                     <SelectTrigger className="w-[180px]">
