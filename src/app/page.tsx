@@ -15,11 +15,11 @@ export default function page() {
           </form>
         </div>
 
-        <div className="flex items-center">
-          <Button variant={'ghost'}>
+        <div className="flex items-center gap-2">
+          <Button size={'icon'} className="rounded-full" variant={'ghost'}>
             <BookmarkIcon />
           </Button>
-          <Button variant={'ghost'}>
+          <Button size={'icon'} className="rounded-full" variant={'ghost'}>
             <SunIcon />
           </Button>
           <Avatar className="ml-4">
