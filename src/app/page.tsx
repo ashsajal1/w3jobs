@@ -1,3 +1,4 @@
+import { ModeToggle } from "@/components/mode-toggle";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -19,9 +20,7 @@ export default function page() {
           <Button size={'icon'} className="rounded-full" variant={'ghost'}>
             <BookmarkIcon />
           </Button>
-          <Button size={'icon'} className="rounded-full" variant={'ghost'}>
-            <SunIcon />
-          </Button>
+          <ModeToggle />
           <Avatar className="ml-4">
             <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
             <AvatarFallback>CN</AvatarFallback>
