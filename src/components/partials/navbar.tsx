@@ -6,7 +6,7 @@ import { ModeToggle } from "../mode-toggle";
 
 export default function Navbar() {
     return (
-        <nav className="p-4 fixed top-0 w-full border-b flex justify-between items-center">
+        <nav className="p-4 h-[80px] fixed top-0 w-full border-b flex justify-between items-center">
             <div className="flex items-center gap-4">
                 <p className="font-bold text-2xl">W3Jobs</p>
                 <form className="flex items-center gap-2">
