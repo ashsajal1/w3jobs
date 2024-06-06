@@ -14,6 +14,10 @@ export default function page() {
 
         <div className="flex flex-col">
           <JobCard />
+          <JobCard />
+          <JobCard />
+          <JobCard />
+          <JobCard />
         </div>
       </section>
 

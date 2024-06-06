@@ -12,7 +12,7 @@ export default function Navbar() {
     const datePosted = ['Past month','Past week','Past 24 hours', 'Anytime']
     const salaryRanges = ['$40000+','$60000+','$80000+','$100000+','$150000+',]
     return (
-        <nav className="h-[80px] fixed top-0 w-full flex flex-col justify-between">
+        <nav className="bg-white dark:bg-black z-10 fixed top-0 w-full flex flex-col justify-between">
             <section className="p-4 border-b flex justify-between items-center w-full">
                 <div className="flex items-center gap-4">
                     <p className="font-bold text-2xl">W3Jobs</p>
