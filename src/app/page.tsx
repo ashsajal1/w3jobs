@@ -1,7 +1,12 @@
 export default function page() {
   return (
-    <main>
+    <div>
+      <section>
+        <div>
+          12 results found
+        </div>
+      </section>
 
-    </main>
+    </div>
   )
 }
