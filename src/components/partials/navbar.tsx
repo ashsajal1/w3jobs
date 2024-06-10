@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { ModeToggle } from "../mode-toggle";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectGroup, SelectLabel, SelectItem } from "@/components/ui/select";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export default function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false)
@@ -31,7 +32,7 @@ export default function Navbar() {
         <nav className={`bg-white dark:bg-black z-10 fixed top-0 w-full flex flex-col justify-between ${isScrolled ? 'bg-opacity-90 backdrop-blur-sm dark:bg-opacity-80 dark:backdrop-blur-lg' : ''}`}>
             <section className="p-4 border-b flex justify-between items-center w-full">
                 <div className="flex items-center gap-4">
-                    <p className="font-bold text-2xl">W3Jobs</p>
+                    <Link href='/'><p className="font-bold text-2xl">W3Jobs</p></Link>
                     <form className="flex items-center gap-2">
                         <Input type="text" placeholder="react job, angular job" />
                         <Button>Search</Button>
