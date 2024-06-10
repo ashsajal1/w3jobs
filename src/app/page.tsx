@@ -12,7 +12,7 @@ export default function page() {
                 <Link href={'/jobs'}>
                     <Button>Explore jobs</Button>
                 </Link>
-                <Link href={'/jobs'}>
+                <Link href={'/jobs/create'}>
                     <Button variant={'outline'}>Post jobs</Button>
                 </Link>
             </div>
