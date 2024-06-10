@@ -17,51 +17,54 @@ export default function page() {
             </div>
 
             <section className="md:flex md:items-center md:justify-between md:gap-6">
-                <section className="flex items-center gap-4">
-                    <div className="mt-4">
-                        <Label>Select Country</Label>
-                        <Select>
-                            <SelectTrigger className="w-[180px]">
-                                <SelectValue placeholder="Country" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectGroup>
-                                    <SelectLabel>Country</SelectLabel>
-                                    <SelectItem value="United States">United States</SelectItem>
-                                    <SelectItem value="Bangladesh">Bangladesh</SelectItem>
+                <section className="flex md:flex-row flex-col items-center gap-4">
+                    <div className="flex w-full items-center gap-4">
+                        <div className="mt-4 w-full">
+                            <Label>Select Country</Label>
+                            <Select>
+                                <SelectTrigger className="w-full md:w-[180px]">
+                                    <SelectValue placeholder="Country" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectGroup>
+                                        <SelectLabel>Country</SelectLabel>
+                                        <SelectItem value="United States">United States</SelectItem>
+                                        <SelectItem value="Bangladesh">Bangladesh</SelectItem>
 
-                                </SelectGroup>
-                            </SelectContent>
-                        </Select>
+                                    </SelectGroup>
+                                </SelectContent>
+                            </Select>
+                        </div>
+
+                        <div className="mt-4 w-full">
+                            <Label>Select Experience</Label>
+                            <Select>
+                                <SelectTrigger className="w-full md:w-[180px]">
+                                    <SelectValue placeholder="Experience" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectGroup>
+                                        <SelectLabel>Experience</SelectLabel>
+                                        {
+                                            experiences.map((experience: string) => (
+                                                <SelectItem key={experience} value={experience}>{experience}</SelectItem>
+
+                                            ))
+                                        }
+
+                                    </SelectGroup>
+                                </SelectContent>
+                            </Select>
+                        </div>
                     </div>
 
-                    <div className="mt-4">
-                        <Label>Select Experience</Label>
-                        <Select>
-                            <SelectTrigger className="w-[180px]">
-                                <SelectValue placeholder="Experience" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectGroup>
-                                    <SelectLabel>Experience</SelectLabel>
-                                    {
-                                        experiences.map((experience: string) => (
-                                            <SelectItem key={experience} value={experience}>{experience}</SelectItem>
-
-                                        ))
-                                    }
-
-                                </SelectGroup>
-                            </SelectContent>
-                        </Select>
-                    </div>
-                    <div className="mt-4">
+                    <div className="mt-4 w-full">
                         <Label>Select Work Type</Label>
                         <Select>
-                            <SelectTrigger className="w-[180px]">
+                            <SelectTrigger className="w-full">
                                 <SelectValue placeholder="Remote" />
                             </SelectTrigger>
-                            <SelectContent>
+                            <SelectContent className="w-full">
                                 <SelectGroup>
                                     <SelectLabel>Work type</SelectLabel>
                                     {
@@ -75,15 +78,14 @@ export default function page() {
                         </Select>
                     </div>
 
-
                 </section>
 
-                <section className="flex items-center gap-4">
-                    <div className="mt-4">
+                <section className="flex items-center gap-4 md:w-auto w-full">
+                    <div className="mt-4 w-full md:w-auto">
                         <Label>Enter minimum salary in USD</Label>
                         <Input type="number" placeholder="Eg. 40000, 80000" />
                     </div>
-                    <div className="mt-4">
+                    <div className="mt-4 w-full md:w-auto">
                         <Label>Enter maximum salary in USD</Label>
                         <Input type="number" placeholder="Eg. 100000, 260000" />
                     </div>
@@ -94,7 +96,7 @@ export default function page() {
                 <Label>Job description</Label>
                 <Textarea placeholder="Job description" />
             </div>
-            
+
             <Button className="mt-4 w-full">Submit</Button>
         </div>
     )
