@@ -2,7 +2,7 @@ import JobCard from "@/components/partials/job-card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { Bookmark, EyeIcon, ShareIcon } from "lucide-react";
+import { Bookmark, Brain, BriefcaseBusinessIcon, Building, EyeIcon, ShareIcon } from "lucide-react";
 
 export default function page() {
     return (
@@ -41,6 +41,32 @@ export default function page() {
                         <span>United States</span>
                         <span>2 days ago</span>
                         <span>12 Applicants</span>
+                    </div>
+                </div>
+
+                <div className="mt-4 flex flex-col gap-2">
+                    <div className="flex items-center gap-2">
+                        <BriefcaseBusinessIcon />
+                        <div className="flex items-center gap-2">
+                            <p>Remote</p>
+                            <p>Contract</p>
+                        </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                        <Building />
+                        <div className="flex items-center gap-2">
+                            <p>100 employees</p>
+                        </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                        <Brain />
+                        <div className="flex items-center gap-2">
+                            <p>Skills : </p>
+                            <p>React</p>
+                            <p>Angular</p>
+                            <p>Vue</p>
+                            <p>NextJs</p>
+                        </div>
                     </div>
                 </div>
             </section>
