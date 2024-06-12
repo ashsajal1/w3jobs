@@ -37,7 +37,7 @@ export default async function page({ searchParams }: any) {
                     <div className="flex items-center gap-2">
                         <Avatar>
                             <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-                            <AvatarFallback>{selectedJob.companyName} Profile Photo</AvatarFallback>
+                            <AvatarFallback>{selectedJob.companyName.charAt(0)}</AvatarFallback>
                         </Avatar>
                         <p>{selectedJob.companyName}</p>
                     </div>
