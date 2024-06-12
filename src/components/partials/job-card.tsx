@@ -2,37 +2,66 @@ import { EyeIcon, Bookmark } from "lucide-react";
 import { Avatar, AvatarImage, AvatarFallback } from "../ui/avatar";
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
+import Link from "next/link";
 
-export default function JobCard() {
+interface Job {
+    id: number;
+    title: string;
+    description: string;
+    authorId: string;
+    country: string;
+    companyName: string;
+    companyDetails: string | null;
+    minSalary: number;
+    maxSalary: number;
+    totalApplicants: number;
+    skills: string;
+    url: string | null;
+    employeesQuantity: number | null;
+    jobType: string;
+    createdAt: Date;
+    updatedAt: Date;
+}
+
+
+interface JobCardProps {
+    job: Job;
+}
+
+export default function JobCard({ job }: JobCardProps) {
     return (
         <div className="flex items-start gap-4 border p-2">
             <Avatar className="ml-4">
-                <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-                <AvatarFallback>CN</AvatarFallback>
+                <AvatarImage src={job.url || ""} alt={job.companyName} />
+                <AvatarFallback>{job.companyName.charAt(0)}</AvatarFallback>
             </Avatar>
 
             <div>
-                <h3 className="font-bold text-lg">Senior Frontend Web developer</h3>
-                <p className="font-light text-slate-600">Company name</p>
+                <h3 className="font-bold text-lg">{job.title}</h3>
+                <p className="font-light text-slate-600">{job.companyName}</p>
                 <div className="flex items-center gap-2">
-                    <p className="text-sm font-light text-slate-600">United States <span>(Remote)</span></p>
+                    <p className="text-sm font-light text-slate-600">
+                        {job.country} <span>({job.jobType})</span>
+                    </p>
                     <Separator orientation="vertical" />
-                    <p className="text-sm font-light text-slate-600">$120000 - $250000</p>
+                    <p className="text-sm font-light text-slate-600">
+                        ${job.minSalary} - ${job.maxSalary}
+                    </p>
                 </div>
 
                 <div className="flex items-center gap-2 mt-4">
-                    <Button size={'sm'}>
-                        <EyeIcon className="size-4 mr-1" />
-                        <span>View</span>
-                    </Button>
-                    <Button size={'sm'} variant={'outline'}>
+                    <Link href={`/jobs?id=${job.id}`}>
+                        <Button size="sm">
+                            <EyeIcon className="size-4 mr-1" />
+                            <span>View</span>
+                        </Button>
+                    </Link>
+                    <Button size="sm" variant="outline">
                         <Bookmark className="size-4 mr-1" />
                         <span>Save</span>
                     </Button>
                 </div>
             </div>
-
         </div>
-
-    )
+    );
 }
