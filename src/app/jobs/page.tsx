@@ -14,10 +14,11 @@ const fetchJobs = async () => {
 
 export default async function page({ searchParams }: any) {
     const jobs = await fetchJobs()
-    let selectedJob = jobs[0]
+    let selectedJob = jobs[0];
     if (searchParams.id) {
-        selectedJob = jobs.find(job => job.id === parseInt(searchParams.id))
-    }
+        selectedJob = jobs.find(job => job.id === parseInt(searchParams.id)) || jobs[0];
+    } 
+    
     console.log("Search params is ", searchParams)
     // console.log(jobs)
     console.log(selectedJob)
