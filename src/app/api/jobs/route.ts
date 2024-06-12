@@ -1,5 +1,5 @@
 import { type NextRequest } from "next/server";
-import prisma from "../../../../prisma/client";
+import prisma from "../../../lib/client";
 
 export async function GET() {
   const jobs = await prisma.job.findMany();

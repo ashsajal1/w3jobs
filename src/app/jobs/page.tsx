@@ -2,7 +2,7 @@ import JobCard from "@/components/partials/job-card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Bookmark, Brain, BriefcaseBusinessIcon, Building, Ellipsis, MousePointerClick } from "lucide-react";
-import prisma from "../../../prisma/client";
+import prisma from "../../lib/client";
 import { timeAgo } from "@/lib/utils";
 
 
