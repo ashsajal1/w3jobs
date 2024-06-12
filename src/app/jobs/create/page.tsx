@@ -18,6 +18,9 @@ export default function page() {
             const description = formData.get('description');
             const minSalary = formData.get('minSalary');
             const maxSalary = formData.get('maxSalary');
+            const companyName = formData.get('companyName');
+            const companyDetails = formData.get('companyDetails');
+            const url = formData.get('url');
 
             const newJob = await prisma.job.create({
                 data: {
@@ -27,10 +30,11 @@ export default function page() {
                     description: description as string,
                     minSalary: parseInt((minSalary as string)) as number,
                     maxSalary: parseInt((maxSalary as string)) as number,
+                    url: url as string,
                     totalApplicants: 0,
                     authorId: "123",
-                    companyName: "Default company",
-                    companyDetails: "Default company details",
+                    companyName: companyName as string,
+                    companyDetails: companyDetails as string,
                     skills: "Java React"
                 },
             });
@@ -66,7 +70,6 @@ export default function page() {
                                             <SelectLabel>Country</SelectLabel>
                                             <SelectItem value="United States">United States</SelectItem>
                                             <SelectItem value="Bangladesh">Bangladesh</SelectItem>
-
                                         </SelectGroup>
                                     </SelectContent>
                                 </Select>
@@ -87,7 +90,6 @@ export default function page() {
 
                                                 ))
                                             }
-
                                         </SelectGroup>
                                     </SelectContent>
                                 </Select>
@@ -126,6 +128,27 @@ export default function page() {
                             <Input name='maxSalary' type="number" placeholder="Eg. 100000, 260000" />
                         </div>
                     </section>
+                </section>
+
+                <section className="mt-4 w-full">
+                    <h2 className="text-xl font-bold">Company Info</h2>
+                    <div className="flex flex-col items-center gap-4 w-full">
+                        <div className="w-full md:flex md:items-center md:gap-4">
+                            <div className="mt-4 w-full">
+                                <Label>Enter Company name</Label>
+                                <Input className="w-full" name='companyName' type="text" placeholder="Eg. Google, Amazon" />
+                            </div>
+
+                            <div className="mt-4 w-full">
+                                <Label>Enter Job url</Label>
+                                <Input className="w-full" name='url' type="text" placeholder="Eg. https://linkedin.com/jobs/xxxx" />
+                            </div>
+                        </div>
+                        <div className="w-full">
+                            <Label>Enter Company description</Label>
+                            <Textarea className="w-full" name='companyDetails' placeholder="Eg. Google is a search engine. etc..." />
+                        </div>
+                    </div>
                 </section>
 
                 <div className="mt-4">
