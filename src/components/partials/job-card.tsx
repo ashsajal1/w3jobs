@@ -2,6 +2,7 @@ import { EyeIcon, Bookmark } from "lucide-react";
 import { Avatar, AvatarImage, AvatarFallback } from "../ui/avatar";
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
+import Link from "next/link";
 
 interface Job {
     id: number;
@@ -49,10 +50,12 @@ export default function JobCard({ job }: JobCardProps) {
                 </div>
 
                 <div className="flex items-center gap-2 mt-4">
-                    <Button size="sm">
-                        <EyeIcon className="size-4 mr-1" />
-                        <span>View</span>
-                    </Button>
+                    <Link href={`/jobs/id=${job.id}`}>
+                        <Button size="sm">
+                            <EyeIcon className="size-4 mr-1" />
+                            <span>View</span>
+                        </Button>
+                    </Link>
                     <Button size="sm" variant="outline">
                         <Bookmark className="size-4 mr-1" />
                         <span>Save</span>
