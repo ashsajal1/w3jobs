@@ -14,7 +14,9 @@ const fetchJobs = async () => {
 
 export default async function page() {
     const jobs = await fetchJobs()
+    const selectedJob = jobs[0]
     // console.log(jobs)
+    console.log(selectedJob)
     return (
         <div className="flex w-full justify-between">
             <section className="w-full border">
@@ -29,15 +31,14 @@ export default async function page() {
                 </div>
             </section>
 
-            {jobs.map(job => (
-                <section key={job.id} className="w-full border hidden md:flex md:flex-col p-4">
+                <section key={selectedJob.id} className="w-full border hidden md:flex md:flex-col p-4">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
                             <Avatar>
                                 <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-                                <AvatarFallback>{job.companyName} Profile Photo</AvatarFallback>
+                                <AvatarFallback>{selectedJob.companyName} Profile Photo</AvatarFallback>
                             </Avatar>
-                            <p>{job.companyName}</p>
+                            <p>{selectedJob.companyName}</p>
                         </div>
                         <div>
                             <Button variant={'ghost'} size={'icon'}>
@@ -47,11 +48,11 @@ export default async function page() {
                     </div>
 
                     <div>
-                        <h2 className="font-bold text-2xl mt-4">{job.title}</h2>
+                        <h2 className="font-bold text-2xl mt-4">{selectedJob.title}</h2>
                         <div className="flex items-center gap-2 text-[12px]">
-                            <span>{job.country}</span>
-                            <span>{timeAgo(job.createdAt)}</span>
-                            <span>{job.totalApplicants}</span>
+                            <span>{selectedJob.country}</span>
+                            <span>{timeAgo(selectedJob.createdAt)}</span>
+                            <span>{selectedJob.totalApplicants}</span>
                         </div>
                     </div>
 
@@ -59,20 +60,20 @@ export default async function page() {
                         <div className="flex items-center gap-2">
                             <BriefcaseBusinessIcon />
                             <div className="flex items-center gap-2">
-                                <p>{job.jobType}</p>
+                                <p>{selectedJob.jobType}</p>
                             </div>
                         </div>
                         <div className="flex items-center gap-2">
                             <Building />
                             <div className="flex items-center gap-2">
-                                <p>{job.employeesQuantity} employees</p>
+                                <p>{selectedJob.employeesQuantity} employees</p>
                             </div>
                         </div>
                         <div className="flex items-center gap-2">
                             <Brain />
                             <div className="flex items-center gap-2">
                                 <p>Skills : </p>
-                                <p>{job.skills.split(" ")}</p>
+                                <p>{selectedJob.skills.split(" ")}</p>
                             </div>
                         </div>
                     </div>
@@ -89,12 +90,12 @@ export default async function page() {
                     </div>
 
                     <div className="mt-4">
-                        <h3 className="text-xl font-bold">About the job</h3>
+                        <h3 className="text-xl font-bold">About the Job</h3>
 
                         <div>
                             <div className="mt-4">
                                 <h4 className="font-bold">Description</h4>
-                                <p className="text-sm">{job.description}</p>
+                                <p className="text-sm">{selectedJob.description}</p>
                             </div>
                         </div>
                     </div>
@@ -107,18 +108,17 @@ export default async function page() {
                             <div className="flex items-center gap-2">
                                 <Avatar>
                                     <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-                                    <AvatarFallback>{job.companyName} Profile Photo</AvatarFallback>
+                                    <AvatarFallback>{selectedJob.companyName} Profile Photo</AvatarFallback>
                                 </Avatar>
-                                <p>{job.companyName}</p>
+                                <p>{selectedJob.companyName}</p>
                             </div>
 
                             <Button size={'sm'} variant={'outline'}>Follow</Button>
                         </div>
 
-                        <p className="text-sm mt-4">{job.companyDetails}</p>
+                        <p className="text-sm mt-4">{selectedJob.companyDetails}</p>
                     </div>
                 </section>
-            ))}
 
         </div>
     )
