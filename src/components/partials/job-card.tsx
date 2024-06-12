@@ -50,7 +50,7 @@ export default function JobCard({ job }: JobCardProps) {
                 </div>
 
                 <div className="flex items-center gap-2 mt-4">
-                    <Link href={`/jobs/id=${job.id}`}>
+                    <Link href={`/jobs?id=${job.id}`}>
                         <Button size="sm">
                             <EyeIcon className="size-4 mr-1" />
                             <span>View</span>
