@@ -1,8 +1,7 @@
 import JobCard from "@/components/partials/job-card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-import { Bookmark, Brain, BriefcaseBusinessIcon, Building, Ellipsis, EyeIcon, MousePointerClick, ShareIcon } from "lucide-react";
+import { Bookmark, Brain, BriefcaseBusinessIcon, Building, Ellipsis, MousePointerClick } from "lucide-react";
 import prisma from "../../../prisma/client";
 import { timeAgo } from "@/lib/utils";
 
@@ -17,11 +16,8 @@ export default async function page({ searchParams }: any) {
     let selectedJob = jobs[0];
     if (searchParams.id) {
         selectedJob = jobs.find(job => job.id === parseInt(searchParams.id)) || jobs[0];
-    } 
-    
-    console.log("Search params is ", searchParams)
-    // console.log(jobs)
-    console.log(selectedJob)
+    }
+
     return (
         <div className="flex w-full justify-between">
             <section className="w-full border">
