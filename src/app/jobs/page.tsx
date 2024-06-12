@@ -14,20 +14,18 @@ const fetchJobs = async () => {
 
 export default async function page() {
     const jobs = await fetchJobs()
-    console.log(jobs)
+    // console.log(jobs)
     return (
         <div className="flex w-full justify-between">
             <section className="w-full border">
                 <div className="w-full p-4">
-                    12 results found
+                    {jobs.length} results found
                 </div>
 
                 <div className="flex flex-col">
-                    <JobCard />
-                    <JobCard />
-                    <JobCard />
-                    <JobCard />
-                    <JobCard />
+                    {jobs.map(job => (
+                        <JobCard job={job} key={job.id} />
+                    ))}
                 </div>
             </section>
 
