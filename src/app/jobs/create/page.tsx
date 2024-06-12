@@ -3,14 +3,45 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem, SelectGroup, SelectLabel } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import prisma from "@/lib/prisma";
 
 export default function page() {
     const experiences = ['Enter level', 'Mid level', 'Senior']
     const workType = ['Remote', 'Onsite', 'Hybrid']
+
     const handleForm = async (formData: FormData) => {
         "use server"
-        // console.log(formData.get('title'))
-    }
+        try {
+            const title = formData.get('title');
+            const country = formData.get('country');
+            const jobType = formData.get('jobType');
+            const description = formData.get('description');
+            const minSalary = formData.get('minSalary');
+            const maxSalary = formData.get('maxSalary');
+
+            const newJob = await prisma.job.create({
+                data: {
+                    title: title as string,
+                    country: country as string,
+                    jobType: jobType as string,
+                    description: description as string,
+                    minSalary: parseInt((minSalary as string)) as number,
+                    maxSalary: parseInt((maxSalary as string)) as number,
+                    totalApplicants: 0,
+                    authorId: "123",
+                    companyName: "Default company",
+                    companyDetails: "Default company details",
+                    skills: "Java React"
+                },
+            });
+
+            console.log(newJob);
+        } catch (error) {
+            console.log("Error is : ", error)
+            throw new Error('Failed to create job entry.');
+        }
+    };
+
     return (
         <div className="p-4">
             <form action={handleForm}>
