@@ -14,13 +14,14 @@ const fetchJobs = async () => {
 export default async function page({ searchParams }: any) {
     const jobs = await fetchJobs()
     let selectedJob = jobs[0];
+    const id = searchParams.id;
     if (searchParams.id) {
         selectedJob = jobs.find(job => job.id === parseInt(searchParams.id)) || jobs[0];
     }
 
     return (
         <div className="flex w-full justify-between">
-            <section className="w-full border">
+            <section className={`w-full border ${id ? 'hidden md:block':''}`}>
                 <div className="w-full p-4">
                     {jobs.length} results found
                 </div>
@@ -32,7 +33,7 @@ export default async function page({ searchParams }: any) {
                 </div>
             </section>
 
-            <section key={selectedJob.id} className="w-full border hidden md:flex md:flex-col p-4">
+            <section key={selectedJob.id} className={`w-full border p-4 ${id ? '':'hidden md:flex md:flex-col'}`}>
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                         <Avatar>
