@@ -68,7 +68,7 @@ export default async function page({ searchParams }: any) {
                                 <span>${selectedJob.maxSalary}</span>
                             </p>}
                             <Badge>{selectedJob.jobType}</Badge>
-                            
+
                         </div>
                     </div>
                     <div className="flex items-center gap-2">
@@ -81,7 +81,7 @@ export default async function page({ searchParams }: any) {
                         <Brain />
                         <div className="flex items-center gap-2">
                             <p>Skills : </p>
-                            <p>{selectedJob.skills.split(" ")}</p>
+                            <Badge variant={'secondary'}>{selectedJob.skills.split(" ")}</Badge>
                         </div>
                     </div>
                 </div>
