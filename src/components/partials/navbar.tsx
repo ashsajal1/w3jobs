@@ -33,7 +33,7 @@ export default function Navbar() {
             <section className="p-4 border-b flex justify-between items-center w-full">
                 <div className="flex items-center gap-4">
                     <Link href='/'><p className="font-bold text-2xl">W3Jobs</p></Link>
-                    <form className="flex items-center gap-2">
+                    <form className="hidden md:flex items-center gap-2">
                         <Input type="text" placeholder="react job, angular job" />
                         <Button>Search</Button>
                     </form>
@@ -62,7 +62,6 @@ export default function Navbar() {
                             <SelectLabel>Fruits</SelectLabel>
                             <SelectItem value="United States">United States</SelectItem>
                             <SelectItem value="Bangladesh">Bangladesh</SelectItem>
-
                         </SelectGroup>
                     </SelectContent>
                 </Select>
