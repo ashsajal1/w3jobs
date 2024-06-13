@@ -4,6 +4,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem, SelectGroup, SelectLabel } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import prisma from "@/lib/prisma";
+import { revalidatePath } from "next/cache";
 
 export default function page() {
     const experiences = ['Enter level', 'Mid level', 'Senior']
@@ -39,7 +40,7 @@ export default function page() {
                 },
             });
 
-            console.log(newJob);
+            revalidatePath("/jobs")
         } catch (error) {
             console.log("Error is : ", error)
             throw new Error('Failed to create job entry.');
