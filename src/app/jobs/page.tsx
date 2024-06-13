@@ -54,7 +54,7 @@ export default async function page({ searchParams }: any) {
                     <div className="flex items-center gap-2 text-[12px]">
                         <span>{selectedJob.country}</span>
                         <span>{timeAgo(selectedJob.createdAt)}</span>
-                        <span>{selectedJob.totalApplicants}</span>
+                        <span>{selectedJob.totalApplicants} Applicants</span>
                     </div>
                 </div>
 
@@ -68,7 +68,7 @@ export default async function page({ searchParams }: any) {
                     <div className="flex items-center gap-2">
                         <Building />
                         <div className="flex items-center gap-2">
-                            <p>{selectedJob.employeesQuantity} employees</p>
+                            <p>{selectedJob.employeesQuantity || '0-10'} employees</p>
                         </div>
                     </div>
                     <div className="flex items-center gap-2">
