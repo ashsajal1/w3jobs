@@ -56,7 +56,7 @@ export default function Navbar() {
                 </div>
             </section>
 
-            <section className={`p-4 border-b w-full overflow-y-hidden overflow-x-scroll md:overflow-x-auto ${pathName === 'jobs' ? 'flex justify-start gap-3 items-center' : 'hidden'}`}>
+            <section className={`p-4 border-b w-full overflow-y-hidden overflow-x-scroll md:overflow-x-auto ${pathName === 'jobs' && path.length === 2 ? 'flex justify-start gap-3 items-center' : 'hidden'}`}>
                 <p>Filters</p>
                 <Select>
                     <SelectTrigger className="w-[180px]">
