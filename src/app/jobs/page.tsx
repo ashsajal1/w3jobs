@@ -78,10 +78,16 @@ export default async function page({ searchParams }: any) {
                         </div>
                     </div>
                     <div className="flex items-center gap-2">
-                        <Brain />
+                        <div>
+                            <Brain />
+                        </div>
                         <div className="flex items-center gap-2">
-                            <p>Skills : </p>
-                            <Badge variant={'secondary'}>{selectedJob.skills.split(" ")}</Badge>
+
+                            <div className="flex-wrap flex gap-2">
+                                {selectedJob.skills.split(" ").map(skill => (
+                                    <Badge variant={'secondary'} key={skill}>{skill}</Badge>
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </div>
