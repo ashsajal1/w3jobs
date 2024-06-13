@@ -8,7 +8,12 @@ import { Select, SelectTrigger, SelectValue, SelectContent, SelectGroup, SelectL
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
+import {
+    SignedIn,
+    SignedOut,
+    SignInButton,
+    UserButton,
+} from '@clerk/nextjs'
 
 export default function Navbar() {
     const path = usePathname();
@@ -48,10 +53,18 @@ export default function Navbar() {
                         <BookmarkIcon />
                     </Button>
                     <ModeToggle />
-                    <Avatar className="ml-4">
-                        <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-                        <AvatarFallback>CN</AvatarFallback>
-                    </Avatar>
+                    <div>
+                        <SignedIn>
+                            <Button size={'icon'} variant={'secondary'} className="rounded-full">
+                                <UserButton />
+                            </Button>
+                        </SignedIn>
+                        <SignedOut>
+                            <Button>
+                                <SignInButton />
+                            </Button>
+                        </SignedOut>
+                    </div>
                 </div>
             </section>
 
