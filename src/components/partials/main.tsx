@@ -7,10 +7,9 @@ export default function Main({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-
     const path = usePathname()
-    const pathName = path.split('/')[1]
+
     return (
-        <main className={`${pathName === 'job'? 'mt-[160px]':'mt-[73px]'}`}>{children}</main>
+        <main className={`${path === '/jobs'? 'mt-[146px]':'mt-[73px]'}`}>{children}</main>
     )
 }
