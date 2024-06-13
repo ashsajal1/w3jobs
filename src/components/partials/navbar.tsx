@@ -7,8 +7,13 @@ import { ModeToggle } from "../mode-toggle";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectGroup, SelectLabel, SelectItem } from "@/components/ui/select";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+
 
 export default function Navbar() {
+    const path = usePathname();
+    const pathName = path.split('/')[1];
+
     const [isScrolled, setIsScrolled] = useState(false)
     useEffect(() => {
 
@@ -51,7 +56,7 @@ export default function Navbar() {
                 </div>
             </section>
 
-            <section className="p-4 border-b flex justify-start gap-3 items-center w-full overflow-y-hidden overflow-x-scroll md:overflow-x-auto">
+            <section className={`p-4 border-b w-full overflow-y-hidden overflow-x-scroll md:overflow-x-auto ${pathName === 'jobs' ? 'flex justify-start gap-3 items-center' : 'hidden'}`}>
                 <p>Filters</p>
                 <Select>
                     <SelectTrigger className="w-[180px]">
