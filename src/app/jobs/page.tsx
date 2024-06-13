@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Bookmark, Brain, BriefcaseBusinessIcon, Building, Ellipsis, MousePointerClick } from "lucide-react";
 import { timeAgo } from "@/lib/utils";
 import prisma from "@/lib/prisma";
-
+import { Badge } from "@/components/ui/badge"
 
 const fetchJobs = async () => {
     const jobs = await prisma.job.findMany();
@@ -21,7 +21,7 @@ export default async function page({ searchParams }: any) {
 
     return (
         <div className="flex w-full justify-between">
-            <section className={`w-full border ${id ? 'hidden md:block':''}`}>
+            <section className={`w-full border ${id ? 'hidden md:block' : ''}`}>
                 <div className="w-full p-4">
                     {jobs.length} results found
                 </div>
@@ -33,7 +33,7 @@ export default async function page({ searchParams }: any) {
                 </div>
             </section>
 
-            <section key={selectedJob.id} className={`w-full border p-4 ${id ? '':'hidden md:flex md:flex-col'}`}>
+            <section key={selectedJob.id} className={`w-full border p-4 ${id ? '' : 'hidden md:flex md:flex-col'}`}>
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                         <Avatar>
@@ -62,7 +62,13 @@ export default async function page({ searchParams }: any) {
                     <div className="flex items-center gap-2">
                         <BriefcaseBusinessIcon />
                         <div className="flex items-center gap-2">
-                            <p>{selectedJob.jobType}</p>
+                            {selectedJob.minSalary && <p>
+                                <span>${selectedJob.minSalary}</span>
+                                <span> - </span>
+                                <span>${selectedJob.maxSalary}</span>
+                            </p>}
+                            <Badge>{selectedJob.jobType}</Badge>
+                            
                         </div>
                     </div>
                     <div className="flex items-center gap-2">
