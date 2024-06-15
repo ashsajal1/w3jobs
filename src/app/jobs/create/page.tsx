@@ -5,6 +5,12 @@ import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem, SelectGr
 import { Textarea } from "@/components/ui/textarea";
 import prisma from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
+import { countries } from 'countries-list'
+const countryList = Object.entries(countries).map(([code, country]) => ({
+    code: code,
+    name: country.name,
+    label: `${country.name} (${country.native})`
+}));
 
 export default function page() {
     const experiences = ['Enter level', 'Mid level', 'Senior']
@@ -70,7 +76,10 @@ export default function page() {
                                         <SelectGroup>
                                             <SelectLabel>Country</SelectLabel>
                                             <SelectItem value="United States">United States</SelectItem>
-                                            <SelectItem value="Bangladesh">Bangladesh</SelectItem>
+
+                                            {countryList.map(country => (
+                                            <SelectItem key={country.code} value={country.name}>{country.label}</SelectItem>
+                                            ))}
                                         </SelectGroup>
                                     </SelectContent>
                                 </Select>
