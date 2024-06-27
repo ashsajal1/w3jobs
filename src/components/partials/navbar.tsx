@@ -7,16 +7,18 @@ import { ModeToggle } from "../mode-toggle";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectGroup, SelectLabel, SelectItem } from "@/components/ui/select";
 import { FormEvent, useEffect, useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter, } from "next/navigation";
 import {
     SignedIn,
     SignedOut,
     SignInButton,
     UserButton,
 } from '@clerk/nextjs'
+import { redirect } from 'next/navigation'
 
 export default function Navbar() {
     const path = usePathname();
+    const router = useRouter();
     const [searchText, setSearchText] = useState('')
     const [isScrolled, setIsScrolled] = useState(false)
 
@@ -40,8 +42,8 @@ export default function Navbar() {
     const salaryRanges = ['$40000+', '$60000+', '$80000+', '$100000+', '$150000+',]
 
     const handleSearch = (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-        console.log(searchText)
+        e.preventDefault();
+        router.push(`/jobs?search=${searchText}`)
     }
     return (
         <nav className={`bg-white dark:bg-black z-10 fixed top-0 w-full flex flex-col justify-between ${isScrolled ? 'bg-opacity-90 backdrop-blur-sm dark:bg-opacity-80 dark:backdrop-blur-lg' : ''}`}>
