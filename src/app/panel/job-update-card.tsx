@@ -36,7 +36,7 @@ export default function JobUpdateCard({ job }: JobCardProps) {
                 </div>
 
                 <div className="flex items-center w-full gap-2">
-                    <Link href={`/jobs?id=${job.id}`}>
+                    <Link href={`/panel/job/${job.id}`}>
                         <Button size="sm">
                             <EyeIcon className="size-4 mr-1" />
                             <span>View</span>
