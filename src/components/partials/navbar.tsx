@@ -14,7 +14,6 @@ import {
     SignInButton,
     UserButton,
 } from '@clerk/nextjs'
-import { redirect } from 'next/navigation'
 
 export default function Navbar() {
     const path = usePathname();
@@ -23,7 +22,7 @@ export default function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false)
 
     useEffect(() => {
-
+        
         const handleScroll = () => {
             if (window.scrollY > 100) {
                 setIsScrolled(true)
