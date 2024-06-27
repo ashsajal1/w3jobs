@@ -1,5 +1,5 @@
 import React from 'react';
-import JobCard from "@/components/partials/job-card";
+import JobCard from "@/app/jobs/job-card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Bookmark, Brain, BriefcaseBusinessIcon, Building, Ellipsis, MousePointerClick } from "lucide-react";

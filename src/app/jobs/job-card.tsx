@@ -1,7 +1,7 @@
 import { EyeIcon, Bookmark } from "lucide-react";
-import { Avatar, AvatarImage, AvatarFallback } from "../ui/avatar";
-import { Button } from "../ui/button";
-import { Separator } from "../ui/separator";
+import { Avatar, AvatarImage, AvatarFallback } from "../../components/ui/avatar";
+import { Button } from "../../components/ui/button";
+import { Separator } from "../../components/ui/separator";
 import Link from "next/link";
 import { JobCardProps } from "@/lib/types";
 

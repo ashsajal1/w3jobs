@@ -3,9 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider"
 import Navbar from "@/components/partials/navbar";
-import Main from "@/components/partials/main";
 import { ClerkProvider } from '@clerk/nextjs'
-
+import Main from "./main"
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {

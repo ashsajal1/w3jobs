@@ -39,7 +39,7 @@ export async function generateMetadata(
     };
 }
 
-const JobPageBody = dynamic(() => import('@/components/partials/jobsPageBody'), {
+const JobPageBody = dynamic(() => import('@/app/jobs/jobsPageBody'), {
     loading: () => <Loading />,
 });
 
