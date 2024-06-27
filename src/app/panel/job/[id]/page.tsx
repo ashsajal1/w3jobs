@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import { getJob } from './actions'
 import { Job } from "@/lib/types";
+import JobEditableBody from "./job-editable-body";
 
 type Params = {
     params: {
@@ -25,11 +26,7 @@ export default function Page({ params }: Params) {
         <div>
             <h1>Job Details</h1>
             {job ? (
-                <div>
-                    <h2>{job.title}</h2>
-                    <p>{job.description}</p>
-                    <p>{job.companyName}</p>
-                </div>
+                <JobEditableBody selectedJob={job} />
             ) : (
                 <p>Loading...</p>
             )}
