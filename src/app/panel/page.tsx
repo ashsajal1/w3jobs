@@ -1,4 +1,5 @@
-import JobUpdateCard from "@/components/partials/job-update-card";
+"use server"
+import JobUpdateCard from "@/app/panel/job-update-card";
 import prisma from "@/lib/prisma";
 
 const fetchJobs = async () => {
@@ -7,6 +8,17 @@ const fetchJobs = async () => {
 };
 
 export default async function page() {
+
+    const handleDelete = async (id: number) => {
+        "use server"
+        const deletedJob = await prisma.job.delete({
+            where: {
+                id: id
+            }
+        })
+
+        console.log("Deleted : ", deletedJob)
+    }
     const jobs = await fetchJobs();
     return (
         <div>

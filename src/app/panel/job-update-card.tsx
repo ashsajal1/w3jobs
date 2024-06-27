@@ -1,18 +1,15 @@
 "use client"
 
-import { EyeIcon, Bookmark, Trash2, Pencil } from "lucide-react";
-import { Avatar, AvatarImage, AvatarFallback } from "../ui/avatar";
-import { Button } from "../ui/button";
-import { Separator } from "../ui/separator";
+import { EyeIcon, Pencil } from "lucide-react";
+import { Avatar, AvatarImage, AvatarFallback } from "../../components/ui/avatar";
+import { Button } from "../../components/ui/button";
+import { Separator } from "../../components/ui/separator";
 import Link from "next/link";
 import DeleteJob from "./delete-job";
 import { JobCardProps } from "@/lib/types";
 
 export default function JobUpdateCard({ job }: JobCardProps) {
 
-    const handleDelete = () => {
-        console.log("Delted!")
-    }
     return (
         <div className="flex items-start gap-4 border p-2">
             <Avatar className="ml-4">
@@ -46,7 +43,7 @@ export default function JobUpdateCard({ job }: JobCardProps) {
                         </Button>
                     </Link>
 
-                    <DeleteJob handleDelete={handleDelete} />
+                    <DeleteJob id={job.id} />
                 </div>
             </div>
         </div>
