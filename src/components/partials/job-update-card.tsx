@@ -6,29 +6,7 @@ import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
 import Link from "next/link";
 import DeleteJob from "./delete-job";
-
-interface Job {
-    id: number;
-    title: string;
-    description: string;
-    authorId: string;
-    country: string;
-    companyName: string;
-    companyDetails: string | null;
-    minSalary: number;
-    maxSalary: number;
-    totalApplicants: number;
-    skills: string;
-    url: string | null;
-    employeesQuantity: number | null;
-    jobType: string;
-    createdAt: Date;
-    updatedAt: Date;
-}
-
-interface JobCardProps {
-    job: Job;
-}
+import { JobCardProps } from "@/lib/types";
 
 export default function JobUpdateCard({ job }: JobCardProps) {
 
