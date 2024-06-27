@@ -1,4 +1,4 @@
-import JobCard from "@/components/partials/job-card";
+import JobUpdateCard from "@/components/partials/job-update-card";
 import prisma from "@/lib/prisma";
 
 const fetchJobs = async () => {
@@ -15,7 +15,7 @@ export default async function page() {
                 <h2>List of jobs</h2>
                 <div>
                     {jobs.map(job => (
-                        <JobCard key={job.id} job={job} />
+                        <JobUpdateCard key={job.id} job={job} />
                     ))}
                 </div>
             </div>
