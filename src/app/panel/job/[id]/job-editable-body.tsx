@@ -180,7 +180,7 @@ const JobEditableBody: React.FC<JobPageBodyProps> = ({ selectedJob }) => {
                     <div className="flex items-center gap-2">
                         {isEditingEmployeesQuantity ? (
                             <Input
-                                type="text"
+                                type="number"
                                 value={employeesQuantity || 0}
                                 onChange={(e) => setEmployeesQuantity(parseInt(e.target.value))}
                                 onBlur={() => handleBlur('employeesQuantity')}

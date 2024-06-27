@@ -40,10 +40,10 @@ export const updateSalary = async (id: number, minSalary: number, maxSalary: num
     });
 };
 
-export const updateEmployeesQuantity = async (id: number, employeesQuantity: string) => {
+export const updateEmployeesQuantity = async (id: number, employeesQuantity: number) => {
     return await prisma.job.update({
         where: { id },
-        data: { employeesQuantity: parseInt(employeesQuantity) }
+        data: { employeesQuantity }
     });
 };
 
