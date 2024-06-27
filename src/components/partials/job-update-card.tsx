@@ -1,8 +1,11 @@
+"use client"
+
 import { EyeIcon, Bookmark, Trash2, Pencil } from "lucide-react";
 import { Avatar, AvatarImage, AvatarFallback } from "../ui/avatar";
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
 import Link from "next/link";
+import DeleteJob from "./delete-job";
 
 interface Job {
     id: number;
@@ -28,6 +31,10 @@ interface JobCardProps {
 }
 
 export default function JobUpdateCard({ job }: JobCardProps) {
+
+    const handleDelete = () => {
+        console.log("Delted!")
+    }
     return (
         <div className="flex items-start gap-4 border p-2">
             <Avatar className="ml-4">
@@ -61,12 +68,7 @@ export default function JobUpdateCard({ job }: JobCardProps) {
                         </Button>
                     </Link>
 
-                    <div>
-                        <Button size="sm" variant="outline">
-                            <Trash2 className="size-4 mr-1" />
-                            <span>Delete</span>
-                        </Button>
-                    </div>
+                    <DeleteJob handleDelete={handleDelete} />
                 </div>
             </div>
         </div>
