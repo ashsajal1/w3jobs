@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "../mode-toggle";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectGroup, SelectLabel, SelectItem } from "@/components/ui/select";
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -17,8 +17,9 @@ import {
 
 export default function Navbar() {
     const path = usePathname();
-
+    const [searchText, setSearchText] = useState('')
     const [isScrolled, setIsScrolled] = useState(false)
+
     useEffect(() => {
 
         const handleScroll = () => {
@@ -37,13 +38,18 @@ export default function Navbar() {
     const workType = ['Remote', 'Onsite', 'Hybrid']
     const datePosted = ['Past month', 'Past week', 'Past 24 hours', 'Anytime']
     const salaryRanges = ['$40000+', '$60000+', '$80000+', '$100000+', '$150000+',]
+
+    const handleSearch = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        console.log(searchText)
+    }
     return (
         <nav className={`bg-white dark:bg-black z-10 fixed top-0 w-full flex flex-col justify-between ${isScrolled ? 'bg-opacity-90 backdrop-blur-sm dark:bg-opacity-80 dark:backdrop-blur-lg' : ''}`}>
             <section className="p-4 border-b flex justify-between items-center w-full">
                 <div className="flex items-center gap-4">
                     <Link href='/'><p className="font-bold text-2xl">W3Jobs</p></Link>
-                    <form className="hidden md:flex items-center gap-2">
-                        <Input type="text" placeholder="react job, angular job" />
+                    <form onSubmit={handleSearch} className="hidden md:flex items-center gap-2">
+                        <Input onChange={(e) => setSearchText(e.target.value)} value={searchText} type="text" placeholder="react job, angular job" />
                         <Button>Search</Button>
                     </form>
                 </div>
@@ -68,6 +74,7 @@ export default function Navbar() {
                 </div>
             </section>
 
+            {/* Filters */}
             <section className={`p-4 border-b w-full overflow-y-hidden overflow-x-scroll md:overflow-x-auto ${path === '/jobs' ? 'flex justify-start gap-3 items-center' : 'hidden'}`}>
                 <p>Filters</p>
                 <Select>
