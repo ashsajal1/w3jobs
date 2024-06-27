@@ -8,8 +8,25 @@ type Props = {
     searchParams: { [key: string]: string }
 }
 
-const fetchJobs = async () => {
-    const jobs = await prisma.job.findMany();
+const fetchJobs = async (tags: string[] = []) => {
+    if (tags.length === 0) {
+        return await prisma.job.findMany();
+    }
+
+    const orConditions = tags.map(tag => ({
+        OR: [
+            { title: { contains: tag, mode: 'insensitive' as const } },
+            { skills: { contains: tag, mode: 'insensitive' as const } },
+            { description: { contains: tag, mode: 'insensitive' as const } }
+        ]
+    }));
+
+    const jobs = await prisma.job.findMany({
+        where: {
+            OR: orConditions.flatMap(condition => condition.OR)
+        }
+    });
+
     return jobs;
 };
 
@@ -17,8 +34,16 @@ export async function generateMetadata(
     { params, searchParams }: Props,
     parent: ResolvingMetadata
 ): Promise<Metadata> {
-    const jobs = await fetchJobs();
+    const searchJobParams = searchParams.search;
+    let jobs;
+    if (searchJobParams) {
+        jobs = await fetchJobs(searchJobParams.split(" "))
+    } else {
+        jobs = await fetchJobs();
+    }
+
     let selectedJob: typeof jobs[0] | null;
+
     const id = searchParams.id;
     if (searchParams.id) {
         selectedJob = jobs.find(job => job.id === parseInt(id)) || jobs[0];
@@ -44,7 +69,14 @@ const JobPageBody = dynamic(() => import('@/app/jobs/jobsPageBody'), {
 });
 
 export default async function page({ searchParams }: Props) {
-    const jobs = await fetchJobs();
+    const searchJobParams = searchParams.search;
+    let jobs;
+    if (searchJobParams) {
+        jobs = await fetchJobs(searchJobParams.split(" "))
+    } else {
+        jobs = await fetchJobs();
+    }
+
     let selectedJob = jobs[0];
     const id = searchParams.id;
     if (searchParams.id) {
