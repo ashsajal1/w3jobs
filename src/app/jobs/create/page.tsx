@@ -22,6 +22,7 @@ export default function page() {
         "use server"
         try {
             const title = formData.get('title');
+            const skills = formData.get('skills');
             const country = formData.get('country');
             const jobType = formData.get('jobType');
             const description = formData.get('description');
@@ -34,6 +35,7 @@ export default function page() {
             const newJob = await prisma.job.create({
                 data: {
                     title: title as string,
+                    skills: skills as string,
                     country: country as string,
                     jobType: jobType as string,
                     description: description as string,
@@ -44,7 +46,6 @@ export default function page() {
                     authorId: userId || "1234",
                     companyName: companyName as string,
                     companyDetails: companyDetails as string,
-                    skills: "Java React"
                 },
             });
 
@@ -142,6 +143,14 @@ export default function page() {
                     </section>
                 </section>
 
+
+                {/* Skills  */}
+                <section className="mt-3">
+                 <Label>Enter required skill </Label>
+                    <Input name="skills" placeholder="Skills eg, Java, React, Angular" />
+                </section>
+
+                {/* Company details */}
                 <section className="mt-4 w-full">
                     <h2 className="text-xl font-bold">Company Info</h2>
                     <div className="flex flex-col items-center gap-4 w-full">
