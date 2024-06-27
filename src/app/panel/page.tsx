@@ -1,9 +1,14 @@
 "use server"
 import JobUpdateCard from "@/app/panel/job-update-card";
 import prisma from "@/lib/prisma";
-
+import { auth } from "@clerk/nextjs/server";
 const fetchJobs = async () => {
-    const jobs = await prisma.job.findMany();
+    const { userId } = auth();
+    const jobs = await prisma.job.findMany({
+        where: {
+            authorId: userId || "1234"
+        }
+    });
     return jobs;
 };
 
