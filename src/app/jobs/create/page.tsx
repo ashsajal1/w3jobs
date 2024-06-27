@@ -11,8 +11,10 @@ const countryList = Object.entries(countries).map(([code, country]) => ({
     name: country.name,
     label: `${country.name} (${country.native})`
 }));
+import { auth } from '@clerk/nextjs/server'
 
 export default function page() {
+    const { userId } = auth();
     const experiences = ['Enter level', 'Mid level', 'Senior']
     const workType = ['Remote', 'Onsite', 'Hybrid']
 
@@ -39,7 +41,7 @@ export default function page() {
                     maxSalary: parseInt((maxSalary as string)) as number,
                     url: url as string,
                     totalApplicants: 0,
-                    authorId: "123",
+                    authorId: userId || "1234",
                     companyName: companyName as string,
                     companyDetails: companyDetails as string,
                     skills: "Java React"
@@ -78,7 +80,7 @@ export default function page() {
                                             <SelectItem value="United States">United States</SelectItem>
 
                                             {countryList.map(country => (
-                                            <SelectItem key={country.code} value={country.name}>{country.label}</SelectItem>
+                                                <SelectItem key={country.code} value={country.name}>{country.label}</SelectItem>
                                             ))}
                                         </SelectGroup>
                                     </SelectContent>
