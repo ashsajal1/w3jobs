@@ -20,9 +20,11 @@ export default function JobUpdateCard({ job }: JobCardProps) {
             <div>
                 <div className="flex items-center w-full">
                     <h3 className="font-bold text-lg">{job.title}</h3>
-                    <Button size="sm" variant="ghost">
-                        <Pencil className="size-4 mr-1" />
-                    </Button>
+                    <Link href={`/panel/job/${job.id}`}>
+                        <Button size="sm" variant="ghost">
+                            <Pencil className="size-4 mr-1" />
+                        </Button>
+                    </Link>
                 </div>
                 <p className="font-light text-slate-600">{job.companyName}</p>
                 <div className="flex items-center gap-2">
