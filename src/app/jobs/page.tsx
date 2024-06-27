@@ -69,6 +69,8 @@ const JobPageBody = dynamic(() => import('@/app/jobs/jobsPageBody'), {
 });
 
 export default async function page({ searchParams }: Props) {
+    const { country, experience, workType, datePosted, salaryRange } = searchParams;
+    // console.log("search params list : ", country, experience, workType, datePosted, salaryRange)
     const searchJobParams = searchParams.search;
     let jobs;
     if (searchJobParams) {
