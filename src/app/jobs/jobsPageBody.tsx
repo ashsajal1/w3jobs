@@ -48,7 +48,7 @@ const JobPageBody: React.FC<JobPageBodyProps> = async ({ jobs, selectedJob, id }
                     <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
                             <Avatar>
-                                <AvatarImage src={imageUrl} alt="@shadcn" />
+                                <AvatarImage src={imageUrl} alt={selectedJob.companyName} />
                                 <AvatarFallback>{selectedJob.companyName.charAt(0)}</AvatarFallback>
                             </Avatar>
                             {user?.fullName ? (
