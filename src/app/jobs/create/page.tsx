@@ -15,7 +15,7 @@ import { auth } from '@clerk/nextjs/server'
 
 export default function page() {
     const { userId } = auth();
-    const experiences = ['Enter level', 'Mid level', 'Senior']
+    const experiences = ['Entry level', 'Mid level', 'Senior']
     const workType = ['Remote', 'Onsite', 'Hybrid']
 
     const handleForm = async (formData: FormData) => {
