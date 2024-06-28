@@ -46,6 +46,7 @@ const JobPageBody: React.FC<JobPageBodyProps> = ({ jobs, selectedJob, id }) => {
                 </div>
             </section>
 
+            {selectedJob && (
             <section key={selectedJob.id} className={`w-full border p-4 ${id ? '' : 'hidden md:flex md:flex-col'}`}>
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
@@ -141,6 +142,7 @@ const JobPageBody: React.FC<JobPageBodyProps> = ({ jobs, selectedJob, id }) => {
                     <p className="text-sm mt-4">{selectedJob.companyDetails}</p>
                 </div>
             </section>
+            )}
         </div>
     );
 };

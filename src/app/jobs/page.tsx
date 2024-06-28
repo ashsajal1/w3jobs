@@ -8,23 +8,49 @@ type Props = {
     searchParams: { [key: string]: string }
 }
 
-const fetchJobs = async (tags: string[] = []) => {
-    if (tags.length === 0) {
-        return await prisma.job.findMany();
+const fetchJobs = async (tags: string[] = [], filters: any = {}) => {
+    const { country, jobType, createdAt, salaryRange } = filters;
+
+    let whereClause: any = {
+        AND: []
+    };
+
+    if (tags.length > 0) {
+        const orConditions = tags.map(tag => ({
+            OR: [
+                { title: { contains: tag, mode: 'insensitive' as const } },
+                { skills: { contains: tag, mode: 'insensitive' as const } },
+                { description: { contains: tag, mode: 'insensitive' as const } }
+            ]
+        }));
+        whereClause.AND.push({ OR: orConditions.flatMap(condition => condition.OR) });
     }
 
-    const orConditions = tags.map(tag => ({
-        OR: [
-            { title: { contains: tag, mode: 'insensitive' as const } },
-            { skills: { contains: tag, mode: 'insensitive' as const } },
-            { description: { contains: tag, mode: 'insensitive' as const } }
-        ]
-    }));
+    if (country) whereClause.AND.push({ country: { contains: country, mode: 'insensitive' as const } });
+    if (jobType) whereClause.AND.push({ jobType: { contains: jobType, mode: 'insensitive' as const } });
+
+    if (createdAt) {
+        const now = new Date();
+        let dateFrom: Date | null = null;
+        if (createdAt === 'Past month') {
+            dateFrom = new Date(now.setMonth(now.getMonth() - 1));
+        } else if (createdAt === 'Past week') {
+            dateFrom = new Date(now.setDate(now.getDate() - 7));
+        } else if (createdAt === 'Past 24 hours') {
+            dateFrom = new Date(now.setDate(now.getDate() - 1));
+        }
+        if (dateFrom) {
+            whereClause.AND.push({ createdAt: { gte: dateFrom } });
+        }
+    }
+
+    if (salaryRange) {
+        const minSalary = parseInt(salaryRange.replace('$', '').replace('+', ''));
+        whereClause.AND.push({ minSalary: { gte: minSalary } });
+    }
 
     const jobs = await prisma.job.findMany({
-        where: {
-            OR: orConditions.flatMap(condition => condition.OR)
-        }
+        where: whereClause.AND.length ? whereClause : undefined
     });
 
     return jobs;
@@ -35,9 +61,16 @@ export async function generateMetadata(
     parent: ResolvingMetadata
 ): Promise<Metadata> {
     const searchJobParams = searchParams.search;
+    const filters = {
+        country: searchParams.country,
+        jobType: searchParams.workType,
+        createdAt: searchParams.datePosted,
+        salaryRange: searchParams.salaryRange
+    };
+
     let jobs;
     if (searchJobParams) {
-        jobs = await fetchJobs(searchJobParams.split(" "))
+        jobs = await fetchJobs(searchJobParams.split(" "), filters)
     } else {
         jobs = await fetchJobs();
     }
@@ -69,12 +102,17 @@ const JobPageBody = dynamic(() => import('@/app/jobs/jobsPageBody'), {
 });
 
 export default async function page({ searchParams }: Props) {
-    const { country, experience, workType, datePosted, salaryRange } = searchParams;
+    const filters = {
+        country: searchParams.country,
+        jobType: searchParams.workType,
+        createdAt: searchParams.datePosted,
+        salaryRange: searchParams.salaryRange
+    };
     // console.log("search params list : ", country, experience, workType, datePosted, salaryRange)
     const searchJobParams = searchParams.search;
     let jobs;
     if (searchJobParams) {
-        jobs = await fetchJobs(searchJobParams.split(" "))
+        jobs = await fetchJobs(searchJobParams.split(" "), filters)
     } else {
         jobs = await fetchJobs();
     }
