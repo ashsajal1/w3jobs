@@ -9,7 +9,7 @@ type Props = {
 }
 
 const fetchJobs = async (tags: string[] = [], filters: any = {}) => {
-    const { country, jobType, createdAt, salaryRange } = filters;
+    const { country, jobType, createdAt, salaryRange, experience } = filters;
 
     let whereClause: any = {
         AND: []
@@ -28,6 +28,7 @@ const fetchJobs = async (tags: string[] = [], filters: any = {}) => {
 
     if (country) whereClause.AND.push({ country: { contains: country, mode: 'insensitive' as const } });
     if (jobType) whereClause.AND.push({ jobType: { contains: jobType, mode: 'insensitive' as const } });
+    if (experience) whereClause.AND.push({ experience: { contains: experience, mode: 'insensitive' as const } });
 
     if (createdAt) {
         const now = new Date();
@@ -65,7 +66,8 @@ export async function generateMetadata(
         country: searchParams.country,
         jobType: searchParams.workType,
         createdAt: searchParams.datePosted,
-        salaryRange: searchParams.salaryRange
+        salaryRange: searchParams.salaryRange,
+        experience: searchParams.experience
     };
 
     let jobs;
