@@ -1,21 +1,13 @@
+import Hero from "@/components/partials/hero";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 export default function page() {
     return (
         <div className="p-12">
-            <div>
-                <h1 className='text-xl md:text-4xl font-bold'>Get jobs that suit your skills</h1>
-            </div>
+            <Hero />
 
-            <div className="flex items-center gap-2 mt-4">
-                <Link href={'/jobs'}>
-                    <Button>Explore jobs</Button>
-                </Link>
-                <Link href={'/jobs/create'}>
-                    <Button variant={'outline'}>Post jobs</Button>
-                </Link>
-            </div>
+            
         </div>
     )
 }
