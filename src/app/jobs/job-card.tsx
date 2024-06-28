@@ -24,6 +24,14 @@ export default function JobCard({ job }: JobCardProps) {
                     <p className="text-sm font-light text-slate-600">
                         ${job.minSalary} - ${job.maxSalary}
                     </p>
+                    {job.experience && (
+                        <>
+                            <Separator orientation="vertical" />
+                            <p className="text-sm font-light text-slate-600">
+                                ${job.experience}
+                            </p>
+                        </>
+                    )}
                 </div>
 
                 <div className="flex items-center gap-2 mt-4">
