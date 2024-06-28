@@ -108,7 +108,8 @@ export default async function page({ searchParams }: Props) {
         country: searchParams.country,
         jobType: searchParams.workType,
         createdAt: searchParams.datePosted,
-        salaryRange: searchParams.salaryRange
+        salaryRange: searchParams.salaryRange,
+        experience: searchParams.experience
     };
     // console.log("search params list : ", country, experience, workType, datePosted, salaryRange)
     const searchJobParams = searchParams.search;
