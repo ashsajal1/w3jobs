@@ -4,6 +4,7 @@ import { Button } from "../../components/ui/button";
 import { Separator } from "../../components/ui/separator";
 import Link from "next/link";
 import { JobCardProps } from "@/lib/types";
+import { Badge } from "@/components/ui/badge";
 
 export default function JobCard({ job }: JobCardProps) {
     return (
@@ -14,7 +15,12 @@ export default function JobCard({ job }: JobCardProps) {
             </Avatar>
 
             <div>
-                <h3 className="font-bold text-lg">{job.title}</h3>
+                <div className="flex items-center gap-2">
+                    <h3 className="font-bold text-lg">{job.title}</h3>
+                    {job.isAcceptingApplication && (
+                        <Badge variant={'secondary'}>Actively recruiting</Badge>
+                    )}
+                </div>
                 <p className="font-light text-slate-600">{job.companyName}</p>
                 <div className="flex items-center gap-2">
                     <p className="text-sm font-light text-slate-600">
