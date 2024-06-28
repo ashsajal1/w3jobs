@@ -6,6 +6,7 @@ import { Bookmark, Brain, BriefcaseBusinessIcon, Building, Ellipsis, MousePointe
 import { timeAgo } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { Job } from "@/lib/types"
+import { clerkClient } from '@clerk/nextjs/server';
 
 type JobPageBodyProps = {
     jobs: Job[];
@@ -13,7 +14,21 @@ type JobPageBodyProps = {
     id: string | undefined;
 };
 
-const JobPageBody: React.FC<JobPageBodyProps> = ({ jobs, selectedJob, id }) => {
+const JobPageBody: React.FC<JobPageBodyProps> = async ({ jobs, selectedJob, id }) => {
+
+    let user, imageUrl;
+
+    try {
+        user = await clerkClient.users.getUser(selectedJob.authorId);
+        // console.log(user)
+        imageUrl = user.imageUrl;
+        // console.log(imageUrl)
+    } catch (error) {
+        console.error('Error fetching user:', error);
+        user = null;
+        imageUrl = '';
+    }
+
     return (
         <div className="flex w-full justify-between">
             <section className={`w-full border ${id ? 'hidden md:block' : ''}`}>
@@ -28,15 +43,16 @@ const JobPageBody: React.FC<JobPageBodyProps> = ({ jobs, selectedJob, id }) => {
                 </div>
             </section>
 
+            {/* Job body */}
             {selectedJob && (
                 <section key={selectedJob.id} className={`w-full border p-4 ${id ? '' : 'hidden md:flex md:flex-col'}`}>
                     <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
                             <Avatar>
-                                <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+                                <AvatarImage src={imageUrl} alt="@shadcn" />
                                 <AvatarFallback>{selectedJob.companyName.charAt(0)}</AvatarFallback>
                             </Avatar>
-                            <p>{selectedJob.companyName}</p>
+                            <p>{user?.firstName + " " + user?.lastName}</p>
                         </div>
                         <div>
                             <Button variant={'ghost'} size={'icon'}>
@@ -46,7 +62,7 @@ const JobPageBody: React.FC<JobPageBodyProps> = ({ jobs, selectedJob, id }) => {
                     </div>
 
                     <div>
-                        <h2 className="font-bold text-2xl mt-4">{selectedJob.title}</h2>
+                        <h2 className="font-bold text-2xl mt-4">{selectedJob.title} at {selectedJob.companyName}</h2>
                         <div className="flex items-center gap-2 text-[12px]">
                             <span>{selectedJob.country}</span>
                             <span>{timeAgo(selectedJob.createdAt)}</span>
