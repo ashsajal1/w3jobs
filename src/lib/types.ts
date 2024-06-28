@@ -13,8 +13,8 @@ export interface Job {
   url: string | null;
   employeesQuantity: number | null;
   jobType: string;
-  experience?: string;
-  isAcceptingApplication?: boolean;
+  experience: string | null;
+  isAcceptingApplication: boolean | null;
   createdAt: Date;
   updatedAt: Date;
 }
