@@ -52,7 +52,11 @@ const JobPageBody: React.FC<JobPageBodyProps> = async ({ jobs, selectedJob, id }
                                 <AvatarImage src={imageUrl} alt="@shadcn" />
                                 <AvatarFallback>{selectedJob.companyName.charAt(0)}</AvatarFallback>
                             </Avatar>
-                            <p>{user?.firstName + " " + user?.lastName}</p>
+                            {user?.fullName ? (
+                                <p>{user.fullName}</p>
+                            ): (
+                                <p>Someone</p>
+                            )}
                         </div>
                         <div>
                             <Button variant={'ghost'} size={'icon'}>
