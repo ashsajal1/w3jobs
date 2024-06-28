@@ -24,7 +24,7 @@ const JobPageBody: React.FC<JobPageBodyProps> = async ({ jobs, selectedJob, id }
         imageUrl = user.imageUrl;
         // console.log(imageUrl)
     } catch (error) {
-        console.error('Error fetching user:', error);
+        // console.error('Error fetching user:', error);
         user = null;
         imageUrl = '';
     }

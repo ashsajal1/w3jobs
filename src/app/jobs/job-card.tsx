@@ -5,12 +5,25 @@ import { Separator } from "../../components/ui/separator";
 import Link from "next/link";
 import { JobCardProps } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
+import { clerkClient } from '@clerk/nextjs/server';
 
-export default function JobCard({ job }: JobCardProps) {
+export default async function JobCard({ job }: JobCardProps) {
+    let user, imageUrl;
+
+    try {
+        user = await clerkClient.users.getUser(job.authorId);
+        // console.log(user)
+        imageUrl = user.imageUrl;
+        // console.log(imageUrl)
+    } catch (error) {
+        // console.error('Error fetching user:', error);
+        user = null;
+        imageUrl = '';
+    }
     return (
         <div className="flex items-start gap-4 border p-2">
             <Avatar className="ml-4">
-                <AvatarImage src={job.url || ""} alt={job.companyName} />
+                <AvatarImage src={imageUrl} alt={job.companyName} />
                 <AvatarFallback>{job.companyName.charAt(0)}</AvatarFallback>
             </Avatar>
 
