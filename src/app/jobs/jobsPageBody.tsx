@@ -15,7 +15,6 @@ type JobPageBodyProps = {
 };
 
 const JobPageBody: React.FC<JobPageBodyProps> = async ({ jobs, selectedJob, id }) => {
-
     let user, imageUrl;
 
     try {
@@ -54,7 +53,7 @@ const JobPageBody: React.FC<JobPageBodyProps> = async ({ jobs, selectedJob, id }
                             </Avatar>
                             {user?.fullName ? (
                                 <p>{user.fullName}</p>
-                            ): (
+                            ) : (
                                 <p>Someone</p>
                             )}
                         </div>
@@ -117,6 +116,7 @@ const JobPageBody: React.FC<JobPageBodyProps> = async ({ jobs, selectedJob, id }
                         </Button>
                     </div>
 
+                    {/* About company */}
                     <div className="mt-4">
                         <h3 className="text-xl font-bold">About the Job</h3>
                         <div>
@@ -133,8 +133,8 @@ const JobPageBody: React.FC<JobPageBodyProps> = async ({ jobs, selectedJob, id }
                         <div className="flex items-center justify-between">
                             <div className="flex items-center gap-2">
                                 <Avatar>
-                                    <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-                                    <AvatarFallback>{selectedJob.companyName} Profile Photo</AvatarFallback>
+                                    <AvatarImage src={imageUrl} alt={selectedJob.companyName} />
+                                    <AvatarFallback>{selectedJob.companyName.charAt(0)} Profile Photo</AvatarFallback>
                                 </Avatar>
                                 <p>{selectedJob.companyName}</p>
                             </div>
