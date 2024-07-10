@@ -56,7 +56,7 @@ export default function Navbar() {
     };
 
     const experiences = ['Entry level', 'Mid level', 'Senior'];
-    const workTypes = ['Remote', 'Onsite', 'Hybrid'];
+    const workTypes = ['Remote', 'Onsite', 'Hybrid', 'Freelance'];
     const datePosts = ['Past month', 'Past week', 'Past 24 hours', 'Anytime'];
     const salaryRanges = ['$40000+', '$60000+', '$80000+', '$100000+', '$150000+'];
 
